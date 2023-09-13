@@ -1,19 +1,24 @@
-//Para crear usuarios.
+//Para mostrar los favoritos.
 const mongoose = require('mongoose');
 
 const UserSchema = mongoose.Schema({ // Un objecto de un modelo que crearemos.
 
-    name:{
+    mark:{
         type: String,
         require: true,
     },
-    email: {
+    models: {
         type: String,
         require: true,
         unique: true //Con esto le decimos que sea unico y no se repita.
     },
-    password: {
+    price: {
         type: String, //Es una cadena de texto.
+        require: true,
+    },
+
+    category: {
+        type: String,
         require: true,
     }
 

@@ -1,15 +1,11 @@
 require ('dotenv').config();
 
-const express = require('express');
-const app = express();
-const port = 3010;
+const app = require('./app')
 
-const CONNECTDB = require('./Database/bd');
-const bodyparser = require('body-parser');
+const CONNECTDB = require('./src/config/bd');
 CONNECTDB();
 
-app.use(bodyparser.urlencoded({extended:true}));
-app.use(bodyparser.json());
+const port = 3010;
 
 app.listen (port, () => {
     console.log(`connection the port ${port}`);
