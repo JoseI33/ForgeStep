@@ -1,2 +1,2 @@
-# Proyecto-Final
-Creación de una pagina de calzados industriales.
+# Final-project
+Creation of a page of industrial footwear. (backend)
