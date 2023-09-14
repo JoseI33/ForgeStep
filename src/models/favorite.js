@@ -1,23 +1,19 @@
-//Para mostrar los favoritos.
-const mongoose = require('mongoose');
+const mongoose = require("mongoose") 
+const Product = require("./producto")
 
-const FavoriteSchema = mongoose.Schema({ // Un objecto de un modelo que crearemos.
-
-    mark:{
-        type: String,
+const FavoriteSchema = mongoose.Schema({
+    user_id:{
+        type: mongoose.Schema.Types.ObjectId,
         require: true,
+        ref: "usuario",
+        
     },
-    models: {
-        type: String,
+    product_id:{
+        type: mongoose.Schema.Types.ObjectId,
         require: true,
-        unique: true //Con esto le decimos que sea unico y no se repita.
-    },
-    price: {
-        type: String, //Es una cadena de texto.
-        require: true,
+        ref: Producto,
+        
     }
-
-
 })
 
-module.exports = mongoose.model('FavoriteProduct', FavoriteSchema); //Utilizamos el metodo modelo, llamamos a la base de datos.
+module.exports = mongoose.model("Favorite", FavoriteSchema)
