@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = 3010;
 
-const CONNECTDB = require('./Database/bd');
+const CONNECTDB = require('./src/config/bd');
 const bodyparser = require('body-parser');
 CONNECTDB();
 

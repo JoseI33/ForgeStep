@@ -1,4 +1,4 @@
-const userModels = require('../router/user');
+const userModels = require('../models/user');
 
 const getUsers = async (req, res) => { // req es una repeticion, res es una respuesta.
     try {
@@ -15,20 +15,21 @@ const getUsers = async (req, res) => { // req es una repeticion, res es una resp
 };
 
 const createUser = async (req, res) => { 
-    const {name, email, password} = req.body 
+    const {name, email, password, role} = req.body 
    
     
     const newUser = new userModels ({ //Trae la informacion de usercreate y crea un usuario.
         name,
         email,
-        password
-    })
+        password,
+        role,
+    });
     try { // Control de errores.
-        const user = await newUser.save();
-        return res.status(200).send(user);
+        const SaveUser = await newUser.save();
+        return res.status(200).send(SaveUser);
     } catch (error) {
         console.log(error);
-        res.status(404).send({ msg:"Error"})
+        res.status(404).send({ msg:"user does not exist"})
     }
 
     console.log(req.body);
