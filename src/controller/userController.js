@@ -3,14 +3,10 @@ const userModels = require('../models/user');
 const getUsers = async (req, res) => { // req es una repeticion, res es una respuesta.
     try {
         const users = await userModels.find();
-        if (users) {
-            return res.status(200).send(users);
-        } else {
-            return res.status(200).send([]);
-        }
+        return res.status(200).send(users);
     } catch (error) {
        console.log(error);
-       res.status(500).send(error)
+       res.status(500).json(error)
     }
 };
 
