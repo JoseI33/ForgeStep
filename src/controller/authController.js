@@ -1,6 +1,6 @@
 const userModel = require('../models/user');
 const bcrypt = require('bcrypt');
-const jwt = require('../utils/jwt');
+const jwt = require('../Utils/jwt');
 
 const register = async (req, res) => {
     const {
@@ -14,25 +14,24 @@ const register = async (req, res) => {
     if (!password) {
         return res.status(400).send({ msg: "Password is required" });
     }
+
     //Segundo paso
     const user = new userModel({
         name,
         email:email.toLowerCase(),
         password,
-        role: "user"
+        role,
     })
 
     const salt = bcrypt.genSaltSync(Number(process.env.SALT)); //bcrypt encripta la base
     const passwordHash = bcrypt.hashSync(password, salt);
     user.password = passwordHash //la password representa la clave del usuario / la passwordHash es la nueva clave encriptada
-    // console.log(password);
-    // console.log(passwordHash);
     try {
         const newUsers = await user.save() //crea un nuevo usuario y lo guarda en la base.
         return res.status(200).send(newUsers) //retorna al usuario el nuevo usuario.
     } catch (error) {
         console.log(error);
-        return res.status(500).send({msg:"No se pudo crear el usuario"});
+        return res.status(500).send({msg:"Failed to create user."});
     }
 }
 

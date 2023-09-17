@@ -1,5 +1,6 @@
 const userModels = require('../models/user');
 
+// Llama al usuario
 const getUsers = async (req, res) => { // req es una repeticion, res es una respuesta.
     try {
         const users = await userModels.find();
@@ -10,6 +11,7 @@ const getUsers = async (req, res) => { // req es una repeticion, res es una resp
     }
 };
 
+// Crea el usuario
 const createUser = async (req, res) => { 
     const {name, email, password, role} = req.body 
    
@@ -22,6 +24,7 @@ const createUser = async (req, res) => {
     });
     try { // Control de errores.
         const SaveUser = await newUser.save();
+        console.log(SaveUser);
         return res.status(200).send(SaveUser);
     } catch (error) {
         console.log(error);
@@ -30,6 +33,9 @@ const createUser = async (req, res) => {
 
     console.log(req.body);
 };
+
+// Recupera la contraseña.
+
 
 module.exports = {
     getUsers,
