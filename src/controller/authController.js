@@ -38,7 +38,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     const {email, password} = req.body;
     if(!email || !password) {
-        return res.status(400).send({msg:"todos los campos son requeridos"})
+        return res.status(400).send({msg:"All fields are required."})
     }
 
     const emailLowerCase = email.toLowerCase();
@@ -51,15 +51,15 @@ const login = async (req, res) => {
             if (isMatch) { //generamos token
                 res.status(200).send({token:jwt.createToken(findUser)})
             }else {
-                return res.status(400).send({msg:"Email o password son incorrectos"})
+                return res.status(400).send({msg:"Email or password are incorrect."})
             }
         }else {
-            return res.status(400).send({msg:"Usuario no en contrado"});
+            return res.status(400).send({msg:"User not found."});
         }
 
     } catch (error) {
         console.log(error);
-        res.status(500).send({msg:"Error usuario no encontrado"})
+        res.status(500).send({msg:"User error not found."})
     }
 }
 module.exports = {
