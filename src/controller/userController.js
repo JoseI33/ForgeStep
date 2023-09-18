@@ -34,10 +34,29 @@ const createUser = async (req, res) => {
     console.log(req.body);
 };
 
+// Edita el usuario.
+const updateUser = async (req, res) => {
+    const user = await user.findByIdUpdate(req.params.id, req.body, {
+        new: true,
+    });
+    if(!user) return res.status(400).json({msg:"User not found."});
+    res.json(user);
+}
+
+// Elimina al usuario.
+const deleteUser = async (req, res) => {
+    const user = await user.findByIdAndDelete(req.params.id);
+    if (!user) return res.status(404).json({ msg: "User not found." });
+  
+    res.json(user);
+  };
+
 // Recupera la contraseña.
 
 
 module.exports = {
     getUsers,
     createUser,
+    updateUser,
+    deleteUser
 };
