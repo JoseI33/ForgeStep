@@ -1,6 +1,7 @@
 require ('dotenv').config();
 const CONNECTDB = require('./src/config/bd');
 const app = require('./app');
+const cors = require('cors');
 const port = 3010;
 
 const bodyparser = require('body-parser');

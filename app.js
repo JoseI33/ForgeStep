@@ -7,6 +7,7 @@ const products = require('./src/router/products');
 
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.json());
+app.use(cors());
 
 app.use('/api/users', usersRoute);
 app.use('/api/auth', authRoute);
