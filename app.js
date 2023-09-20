@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
 const bodyparser = require('body-parser');
-const usersRoute = require('./src/router/user');
-const favoriteRouter = require("./src/router/favorite");
+const usersRoute = require('./src/router/user.js');
+const authRoute = require('./src/router/auth.js')
+const products = require('./src/router/products');
 
 app.use(bodyparser.urlencoded({extended:true}));
-app.use(bodyparser.json());
+app.use(express.json());
 
-app.use('api/users', usersRoute);
-app.use("api/favorites", favoriteRouter);
+app.use('/api/users', usersRoute);
+app.use('/api/auth', authRoute);
+app.use('/api/products', products);
 
-module.exports = app
+module.exports = app;

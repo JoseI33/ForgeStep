@@ -1,7 +1,7 @@
 //Para crear usuarios.
 const mongoose = require('mongoose');
 
-const UserSchema = mongoose.Schema({ // Un objecto de un modelo que crearemos.
+const UserSchema = new mongoose.Schema({ // Un objecto de un modelo que crearemos.
 
     name:{
         type: String,
@@ -15,6 +15,11 @@ const UserSchema = mongoose.Schema({ // Un objecto de un modelo que crearemos.
     password: {
         type: String, //Es una cadena de texto.
         require: true,
+    },
+    role: {
+        type: String,
+        default: "user",
+        enum:["user", "admin"],
     }
 
 
