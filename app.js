@@ -4,6 +4,7 @@ const bodyparser = require('body-parser');
 const usersRoute = require('./src/router/user.js');
 const authRoute = require('./src/router/auth.js')
 const products = require('./src/router/products');
+const cors = require('cors');
 
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.json());
