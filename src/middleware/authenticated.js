@@ -1,5 +1,4 @@
-const tokenJw = require('jsonwebtoken');
-const jwt = require('../utils/jwt');
+const jwt = require('../../Utils/jwt.js');
 
 const isAuth = (req, res, next) => {// next es para que pase el siguiente.
     if (!req.headers.authorization) {
@@ -21,4 +20,17 @@ const isAuth = (req, res, next) => {// next es para que pase el siguiente.
         }
     }
 
+}
+
+const isAdmin = (req, res, next) => {
+    if(req.user.role && req.user.role === "Admin"){
+        return next()
+    }else {
+        return res.status(404).send({msg:"You don't have the required role for this resource."})
+    };
+}
+
+module.exports = {
+    isAuth,
+    isAdmin
 }
