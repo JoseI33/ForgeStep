@@ -1,4 +1,4 @@
-const jwt = require('../Utils/jwt.js');
+const jwt = require('../../Utils/jwt.js');
 
 const isAuth = (req, res, next) => {// next es para que pase el siguiente.
     if (!req.headers.authorization) {

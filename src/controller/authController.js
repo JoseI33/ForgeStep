@@ -1,6 +1,6 @@
 const userModel = require('../models/user');
 const bcrypt = require('bcrypt');
-const jwt = require('../Utils/jwt');
+const jwt = require('../../Utils/jwt');
 
 const register = async (req, res) => {
     const {
@@ -14,7 +14,6 @@ const register = async (req, res) => {
     if (!password) {
         return res.status(400).send({ msg: "Password is required" });
     }
-
     //Segundo paso
     const user = new userModel({
         name,
@@ -44,7 +43,7 @@ const login = async (req, res) => {
     const emailLowerCase = email.toLowerCase();
 
     try {
-        const findUser = await userModel.findOne({email:emailLowerCase})
+        const findUser = await userModel.findOne({email:emailLowerCase}) //
        
         if(findUser) {
             const isMatch = bcrypt.compareSync(password, findUser.password) //compara el pass del usuario con el pass que le brinda bcrypt.
